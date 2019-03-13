@@ -7,13 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14293F022238D4C100575EC6 /* StatusStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14293F012238D4C100575EC6 /* StatusStackView.swift */; };
 		142D2C252238C46A00AB0F2A /* CraftDemoFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 142D2C232238C46A00AB0F2A /* CraftDemoFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		142D2C2C2238C4D900AB0F2A /* SavingsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D2C2B2238C4D900AB0F2A /* SavingsInfo.swift */; };
+		142D2C2E2238C50B00AB0F2A /* SavingsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D2C2D2238C50B00AB0F2A /* SavingsCategory.swift */; };
+		142D2C322238C56100AB0F2A /* ProgressArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D2C312238C56100AB0F2A /* ProgressArcView.swift */; };
+		142D2C352238C5E400AB0F2A /* SavingsInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D2C342238C5E400AB0F2A /* SavingsInfoService.swift */; };
+		146EE7DC22390EA4001A21ED /* MarkerShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EE7DB22390EA4001A21ED /* MarkerShapeLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14293F012238D4C100575EC6 /* StatusStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusStackView.swift; sourceTree = "<group>"; };
 		142D2C202238C46A00AB0F2A /* CraftDemoFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CraftDemoFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142D2C232238C46A00AB0F2A /* CraftDemoFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CraftDemoFramework.h; sourceTree = "<group>"; };
 		142D2C242238C46A00AB0F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142D2C2B2238C4D900AB0F2A /* SavingsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsInfo.swift; sourceTree = "<group>"; };
+		142D2C2D2238C50B00AB0F2A /* SavingsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsCategory.swift; sourceTree = "<group>"; };
+		142D2C312238C56100AB0F2A /* ProgressArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArcView.swift; sourceTree = "<group>"; };
+		142D2C342238C5E400AB0F2A /* SavingsInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsInfoService.swift; sourceTree = "<group>"; };
+		146EE7DB22390EA4001A21ED /* MarkerShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerShapeLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +58,40 @@
 		142D2C222238C46A00AB0F2A /* CraftDemoFramework */ = {
 			isa = PBXGroup;
 			children = (
+				142D2C332238C5D100AB0F2A /* Services */,
+				142D2C302238C55300AB0F2A /* Views */,
+				142D2C2F2238C54500AB0F2A /* Models */,
 				142D2C232238C46A00AB0F2A /* CraftDemoFramework.h */,
 				142D2C242238C46A00AB0F2A /* Info.plist */,
 			);
 			path = CraftDemoFramework;
+			sourceTree = "<group>";
+		};
+		142D2C2F2238C54500AB0F2A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				142D2C2B2238C4D900AB0F2A /* SavingsInfo.swift */,
+				142D2C2D2238C50B00AB0F2A /* SavingsCategory.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		142D2C302238C55300AB0F2A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				142D2C312238C56100AB0F2A /* ProgressArcView.swift */,
+				14293F012238D4C100575EC6 /* StatusStackView.swift */,
+				146EE7DB22390EA4001A21ED /* MarkerShapeLayer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		142D2C332238C5D100AB0F2A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				142D2C342238C5E400AB0F2A /* SavingsInfoService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +116,7 @@
 				142D2C1C2238C46A00AB0F2A /* Sources */,
 				142D2C1D2238C46A00AB0F2A /* Frameworks */,
 				142D2C1E2238C46A00AB0F2A /* Resources */,
+				142D2C6B2238CAD200AB0F2A /* Copy Framework */,
 			);
 			buildRules = (
 			);
@@ -95,6 +138,7 @@
 				TargetAttributes = {
 					142D2C1F2238C46A00AB0F2A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -125,11 +169,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		142D2C6B2238CAD200AB0F2A /* Copy Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -R /Users/sevenlakes/Workspace/ReferenceCode/CraftDemoFramework/DerivedData/CraftDemoFramework/Build/Products/Debug-iphonesimulator/*.*  /Users/sevenlakes/Workspace/ReferenceCode/CraftDemoApp/Carthage/\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		142D2C1C2238C46A00AB0F2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142D2C322238C56100AB0F2A /* ProgressArcView.swift in Sources */,
+				14293F022238D4C100575EC6 /* StatusStackView.swift in Sources */,
+				142D2C2C2238C4D900AB0F2A /* SavingsInfo.swift in Sources */,
+				142D2C2E2238C50B00AB0F2A /* SavingsCategory.swift in Sources */,
+				142D2C352238C5E400AB0F2A /* SavingsInfoService.swift in Sources */,
+				146EE7DC22390EA4001A21ED /* MarkerShapeLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +332,7 @@
 		142D2C292238C46A00AB0F2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -278,6 +350,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FDG.CraftDemoFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -286,6 +359,7 @@
 		142D2C2A2238C46A00AB0F2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
