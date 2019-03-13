@@ -13,8 +13,8 @@ build/
 xcuserdata
 profile
 *.moved-aside
-Carthage
+Carthage/*
 .idea/
 DerivedData/*
 DerivedData/
-FDGCore.xcodeproj/xcuserdata
+CraftDemoFramework.xcodeproj/xcuserdata

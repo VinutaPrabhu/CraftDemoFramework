@@ -116,7 +116,6 @@
 				142D2C1C2238C46A00AB0F2A /* Sources */,
 				142D2C1D2238C46A00AB0F2A /* Frameworks */,
 				142D2C1E2238C46A00AB0F2A /* Resources */,
-				142D2C6B2238CAD200AB0F2A /* Copy Framework */,
 			);
 			buildRules = (
 			);
@@ -168,27 +167,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		142D2C6B2238CAD200AB0F2A /* Copy Framework */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Framework";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -R /Users/sevenlakes/Workspace/ReferenceCode/CraftDemoFramework/DerivedData/CraftDemoFramework/Build/Products/Debug-iphonesimulator/*.*  /Users/sevenlakes/Workspace/ReferenceCode/CraftDemoApp/Carthage/\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		142D2C1C2238C46A00AB0F2A /* Sources */ = {

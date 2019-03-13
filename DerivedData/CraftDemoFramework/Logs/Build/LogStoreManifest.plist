@@ -8242,6 +8242,35 @@
 			<key>uniqueIdentifier</key>
 			<string>CDD7CB4D-EE34-4016-BBCD-5CC6D79ED616</string>
 		</dict>
+		<key>D0206394-37E4-46F3-8483-D4FC8B08AE4C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D0206394-37E4-46F3-8483-D4FC8B08AE4C.xcactivitylog</string>
+			<key>highLevelStatus</key>
+			<string>S</string>
+			<key>schemeIdentifier-containerName</key>
+			<string>CraftDemoFramework project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>CraftDemoFramework</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build CraftDemoFramework</string>
+			<key>timeStartedRecording</key>
+			<real>574173466.44094706</real>
+			<key>timeStoppedRecording</key>
+			<real>574173466.55970204</real>
+			<key>title</key>
+			<string>Build CraftDemoFramework</string>
+			<key>uniqueIdentifier</key>
+			<string>D0206394-37E4-46F3-8483-D4FC8B08AE4C</string>
+		</dict>
 		<key>D15F2E34-4F39-4A1E-BAA6-441F453736F2</key>
 		<dict>
 			<key>className</key>
