@@ -7,14 +7,15 @@
 //
 
 import UIKit
-
 public protocol ProgressArcViewProtocol {}
+
+let placeHolderColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
 
 public class ProgressArcView: UIView, ProgressArcViewProtocol {
     let startAngle = CGFloat(90).inRadians()
     let endAngle = CGFloat(450).inRadians()
-    let arcLayer = CAShapeLayer()
-    let scoreLabel = UILabel()
+    var progressLayer = CAShapeLayer()
+    var scoreLabel = UILabel()
     
     private var arcCenter: CGPoint {
         return CGPoint(x: frame.width / 2, y: frame.height / 2)
@@ -22,12 +23,6 @@ public class ProgressArcView: UIView, ProgressArcViewProtocol {
     
     private var arcRadius: CGFloat {
         return frame.width / 3
-    }
-    
-    convenience init(_ frame: CGRect) {
-        self.init(frame: frame)
-        
-        configure()
     }
     
     override init(frame: CGRect) {
@@ -62,37 +57,51 @@ public class ProgressArcView: UIView, ProgressArcViewProtocol {
     
     private func updateProgressArc(with percentange: Float, _ strokeColor: UIColor, _ score: Float) {
         CATransaction.begin()
-        arcLayer.strokeStart = 0
-        arcLayer.strokeEnd = CGFloat(percentange)
-        arcLayer.strokeColor = strokeColor.cgColor
+        progressLayer.strokeStart = 0
+        progressLayer.strokeEnd = percentange == 0 ? CGFloat(0.01) : CGFloat(percentange) // TODO: temporary to show slight color for 0
+        progressLayer.strokeColor = strokeColor.cgColor
+        
         scoreLabel.textColor = strokeColor
         scoreLabel.text = "\(Int(score))"
         CATransaction.commit()
     }
     
     private func addProgressView() {
+        let placeholderLayer = getArcLayer(placeHolderColor)
+        layer.addSublayer(placeholderLayer)
+        
+        progressLayer = getArcLayer(UIColor.white)
+        layer.addSublayer(progressLayer)
+        
+        scoreLabel = getScoreLabel()
+        addSubview(scoreLabel)
+    }
+    
+    private func getArcLayer(_ strokeColor: UIColor) -> CAShapeLayer {
         let path = UIBezierPath(arcCenter: arcCenter,
                                 radius: arcRadius,
                                 startAngle: startAngle,
                                 endAngle: endAngle,
                                 clockwise: true)
         
-        arcLayer.lineWidth = 15
-        arcLayer.path = path.cgPath
-        arcLayer.strokeColor = UIColor.white.cgColor
-        arcLayer.fillColor = UIColor.white.cgColor
-        arcLayer.strokeStart = 0
-        arcLayer.strokeEnd = 0.5
+        let progressLayer = CAShapeLayer()
+        progressLayer.lineWidth = 15
+        progressLayer.path = path.cgPath
+        progressLayer.strokeColor = strokeColor.cgColor
+        progressLayer.fillColor = UIColor.white.cgColor
         
-        scoreLabel.frame = CGRect(x: arcCenter.x, y: arcCenter.y, width: arcRadius, height: arcRadius / 2)
-        scoreLabel.center = arcCenter
-        scoreLabel.text = ""
-        scoreLabel.textAlignment = .center
-        scoreLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 45.0)
-        scoreLabel.textColor = UIColor.black
+        return progressLayer
+    }
+    
+    private func getScoreLabel() -> UILabel {
+        let label = UILabel(frame: CGRect(x: arcCenter.x, y: arcCenter.y, width: arcRadius, height: arcRadius / 2))
+        label.center = arcCenter
+        label.text = ""
+        label.textAlignment = .center
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 45.0)
+        label.textColor = UIColor.black
         
-        layer.addSublayer(arcLayer)
-        addSubview(scoreLabel)
+        return label
     }
 }
 
