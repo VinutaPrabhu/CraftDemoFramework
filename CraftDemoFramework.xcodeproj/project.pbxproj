@@ -116,6 +116,7 @@
 				142D2C1C2238C46A00AB0F2A /* Sources */,
 				142D2C1D2238C46A00AB0F2A /* Frameworks */,
 				142D2C1E2238C46A00AB0F2A /* Resources */,
+				1436A59F223A1BA4009B9E7F /* Copy framework */,
 			);
 			buildRules = (
 			);
@@ -167,6 +168,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1436A59F223A1BA4009B9E7F /* Copy framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		142D2C1C2238C46A00AB0F2A /* Sources */ = {

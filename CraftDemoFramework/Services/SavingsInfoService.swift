@@ -21,12 +21,15 @@ public protocol SavingsInfoServiceProtocol {
 }
 
 protocol SavingsInfoServicePrivateProtocol {
+    var rangeLabels: [String] { get set }
     func getSavingsCategory() -> SavingsCategory?
-    func rangeLabel(_ index: Int) -> String
     func getSavingsPercentage() -> Float?
+    func getRangeLabels() -> [String]
 }
 
 public class SavingsInfoService: NSObject, SavingsInfoServiceProtocol, SavingsInfoServicePrivateProtocol {
+    var rangeLabels = [String]()
+    
     static let percentageKey = "percentage"
     static let categoryKey = "category"
     static let colorKey = "color"
@@ -49,13 +52,29 @@ public class SavingsInfoService: NSObject, SavingsInfoServiceProtocol, SavingsIn
         
         self.savingsInfo = savingsInfo
         
+        let category = getCategoryBasedOnRange()
+        rangeLabels = getRangeLabels()
+        
         var userInfo = [String: Any]()
         userInfo[SavingsInfoService.percentageKey] = getSavingsPercentage()
         userInfo[SavingsInfoService.colorKey] = getSavingsCategory()?.color
-        userInfo[SavingsInfoService.categoryKey] = getSavingsCategory()
+        userInfo[SavingsInfoService.categoryKey] = category
         userInfo[SavingsInfoService.scoreKey] = getSavingsScore()
         
         NotificationCenter.default.post(name: .SavingsInfoUpdated, object: nil, userInfo: userInfo)
+    }
+    
+    func getRangeLabels() -> [String] {
+        guard let info = savingsInfo else { return [String]() }
+        
+        var labels = [String]()
+        info.rangeValues.sort()
+        
+        for i in (1..<info.rangeValues.count).reversed() {
+            labels.append("\(info.rangeValues[i-1]) - \(info.rangeValues[i])")
+        }
+        
+        return labels
     }
     
     // MARK: Find savings category
@@ -71,13 +90,20 @@ public class SavingsInfoService: NSObject, SavingsInfoServiceProtocol, SavingsIn
         return SavingsCategory(rawValue: Int(category)) ?? nil
     }
     
-    func rangeLabel(_ index: Int) -> String {
-        guard let maxSavings = savingsInfo?.maxSavings else { return "" }
-        let increment = maxSavings / Float(SavingsCategory.allValues.count)
-        let start = Float(index) * increment
-        let end = start + increment - 1
+    func getCategoryBasedOnRange() -> SavingsCategory? {
+        guard let score = getSavingsScore(), let info = savingsInfo else { return nil }
+        var lastRange = info.rangeValues[0]
+        var category: SavingsCategory?
         
-        return "\(start)-\(end)"
+        for i in 1..<info.rangeValues.count {
+            if score > Float(lastRange) && score < Float(info.rangeValues[i]) {
+                category = SavingsCategory(rawValue: i - 1)
+                break
+            }
+            lastRange = info.rangeValues[i]
+        }
+        
+        return (category)
     }
     
     func getSavingsPercentage() -> Float? {

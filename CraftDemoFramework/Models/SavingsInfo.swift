@@ -11,18 +11,18 @@ import Foundation
 class SavingsInfo: NSObject, Codable {
     var expectedSavings: Float? = nil
     var currentSavings: Float? = nil
+    var minSavings: Float? = nil
+    var maxSavings: Float? = nil
     
-    let minSavings: Float = 0.0
-    let maxSavings: Float = 1000.0
+    var rangeValues = [Int]()
     
     enum CodingKeys: String, CodingKey {
         case expectedSavings = "expectedSavings"
         case currentSavings = "currentSavings"
-    }
-    
-    init(expectedSavings: Float, currentSavings: Float) {
-        self.expectedSavings = expectedSavings
-        self.currentSavings = currentSavings
+        case range = "range"
+        case minSavings = "minSavings"
+        case maxSavings = "maxSavings"
+        case rangeValues = "rangeValues"
     }
     
     override init() {
@@ -34,6 +34,11 @@ class SavingsInfo: NSObject, Codable {
         
         expectedSavings = try values.decode(Float.self, forKey: .expectedSavings)
         currentSavings = try values.decode(Float.self, forKey: .currentSavings)
+        minSavings = try values.decode(Float.self, forKey: .minSavings)
+        maxSavings = try values.decode(Float.self, forKey: .maxSavings)
+        
+        let container = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .range)
+        rangeValues = try container.decode([Int].self, forKey:.rangeValues)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -41,5 +46,8 @@ class SavingsInfo: NSObject, Codable {
         
         try container.encode(expectedSavings, forKey: .expectedSavings)
         try container.encode(currentSavings, forKey: .currentSavings)
+        try container.encode(minSavings, forKey: .minSavings)
+        try container.encode(maxSavings, forKey: .maxSavings)
+        try container.encode(rangeValues, forKey: .rangeValues)
     }
 }

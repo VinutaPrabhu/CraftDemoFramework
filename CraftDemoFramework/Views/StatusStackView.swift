@@ -12,9 +12,7 @@ public class StatusStackView: UIStackView, UIPopoverPresentationControllerDelega
     var markerLabel: UILabel?
     var tagLabel: UILabel?
     var shapeLayer: CAShapeLayer?
-    
-    // To be fetched or calculated
-    let rangeValues = ["0-199", "200-399", "400-599", "600-799", "800-1000"]
+    var labels = [UILabel]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,13 +45,27 @@ public class StatusStackView: UIStackView, UIPopoverPresentationControllerDelega
     public func addLabels() {
         for statusView in arrangedSubviews {
             let label = UILabel(frame: CGRect(x: 25, y: -10, width: 200, height: 60))
-            label.text = rangeValues[statusView.tag]
+            
+            if (SavingsInfoService.sharedInstance.rangeLabels.count > 0) {
+                label.text = SavingsInfoService.sharedInstance.rangeLabels[statusView.tag]
+            }
+            
             label.textColor = UIColor.white
             label.backgroundColor = UIColor.clear
             label.textAlignment = .left
             
+            labels.append(label)
             statusView.addSubview(label)
             statusView.bringSubviewToFront(label)
+        }
+    }
+    
+    private func updateRangeLabels() {
+        if (SavingsInfoService.sharedInstance.rangeLabels.count > 0) {
+            let rangeLabels = SavingsInfoService.sharedInstance.rangeLabels
+            for i in 0..<labels.count {
+                labels[i].text = rangeLabels[i]
+            }
         }
     }
     
@@ -63,6 +75,7 @@ public class StatusStackView: UIStackView, UIPopoverPresentationControllerDelega
         
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self, let statusView = self?.getStatusView(category) else { return }
+            strongSelf.updateRangeLabels()
             
             if let label = strongSelf.tagLabel {
                 label.removeFromSuperview()
