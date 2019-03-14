@@ -24,7 +24,7 @@ protocol SavingsInfoServicePrivateProtocol {
     var rangeLabels: [String] { get set }
     func getSavingsCategory() -> SavingsCategory?
     func getSavingsPercentage() -> Float?
-    func getRangeLabels() -> [String]
+    func updateRangeLabels() -> [String]
 }
 
 public class SavingsInfoService: NSObject, SavingsInfoServiceProtocol, SavingsInfoServicePrivateProtocol {
@@ -53,7 +53,7 @@ public class SavingsInfoService: NSObject, SavingsInfoServiceProtocol, SavingsIn
         self.savingsInfo = savingsInfo
         
         let category = getCategoryBasedOnRange()
-        rangeLabels = getRangeLabels()
+        rangeLabels = updateRangeLabels()
         
         var userInfo = [String: Any]()
         userInfo[SavingsInfoService.percentageKey] = getSavingsPercentage()
@@ -64,14 +64,14 @@ public class SavingsInfoService: NSObject, SavingsInfoServiceProtocol, SavingsIn
         NotificationCenter.default.post(name: .SavingsInfoUpdated, object: nil, userInfo: userInfo)
     }
     
-    func getRangeLabels() -> [String] {
+    func updateRangeLabels() -> [String] {
         guard let info = savingsInfo else { return [String]() }
         
         var labels = [String]()
         info.rangeValues.sort()
         
         for i in (1..<info.rangeValues.count).reversed() {
-            labels.append("\(info.rangeValues[i-1]) - \(info.rangeValues[i])")
+            labels.append("\(Int(info.rangeValues[i-1])) - \(Int(info.rangeValues[i]))")
         }
         
         return labels
