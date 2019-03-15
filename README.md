@@ -1,6 +1,6 @@
 # CraftDemoFramework
 
-Sample jSON file structure
+Sample JSON file 
 
 ```json
 {
