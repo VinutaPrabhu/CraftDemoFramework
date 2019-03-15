@@ -186,7 +186,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -R /Users/sevenlakes/Workspace/ReferenceCode/CraftDemoFramework/DerivedData/CraftDemoFramework/Build/Products/Debug-iphonesimulator/CraftDemoFramework.framework /Users/sevenlakes/Workspace/ReferenceCode/CraftDemoApp/Carthage/Build/iOS\n\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
